@@ -1,6 +1,6 @@
 # ipAnalisisSaysCountryAndLanguages
 This has GPL3 license, like linux, use it freely, modify or improve if you want. This is a gift to humanity.
-This is has endpoints (also known as API) that analises web page vistor's IP, and provides information like vistor's Country and which language/s are spoken in that Country.
+This has endpoints (also known as API) that analises web page vistor's IP, and provides information like vistor's Country and which language/s are spoken in that Country.
 It has been programed with all world countries, and it has more than 120 languages. I think that all languages with more than 2 millions of spoken people are included.
 Using this software you can also change dinamically the web language dinamically, according to visitor's language.
 I programmed this, cause there is no free product that does this, you had to pay to others If you want this functionallity, so I just did it.
