@@ -1,0 +1,124 @@
+package com.ipAnalisisSaysCountryAndLanguages;
+
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.ComponentScan;
+//import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+//import com.mailAttacherPackage.Controller.MailAttacherController;
+
+@SpringBootApplication 
+//@ComponentScan(basePackageClasses = MailAttacherController.class) si la descomentas no funciona
+public class MailAttacherApplication extends SpringBootServletInitializer 
+//@SpringBootApplication descomentar para correr sobre eclipse y no sobre tomcat
+//public class MailAttacherApplication //descomentar para correr sobre eclipse y no sobre tomcat
+{
+
+	// comentar de aki para abjo para correr sobre eclipse y no sobre tomcat 
+	
+	
+	  @Override 
+	  protected SpringApplicationBuilder configure  (SpringApplicationBuilder builder) 
+	  {
+		  return  builder.sources(MailAttacherApplication.class); 
+	  }
+	 
+	 
+	// comentar de aki para arriba para correr sobre eclipse y no sobre tomcat 
+	 
+	public static void main(String[] args)
+	{
+		SpringApplication.run(MailAttacherApplication.class, args);
+	}
+	//de aki paraabojo comentar para ejecutar app con eclipse y no con tomcat
+	 @Bean 
+	 WebMvcConfigurer corsConfigurer() 
+	  { 
+		  return new WebMvcConfigurer()
+		  {
+	  
+			  @Override 
+			  public void addCorsMappings(CorsRegistry registry) 
+			  {
+				  registry.addMapping("/**").allowedOrigins("*").allowedMethods("*").
+				  allowedHeaders("*");
+				  //registry.addMapping("/**").allowedOrigins("/**").allowedMethods("*").
+				  //allowedHeaders("*");
+			  }
+		  };
+	   }
+	  
+	/*
+	  private Connector connector()
+	  {
+		  Connector connector=new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+		  connector.setScheme("http");
+		  connector.setPort(8080);
+		  connector.setSecure(false);
+		  return connector;
+	  }
+	  
+	  @Bean
+	   ServletWebServerFactory servletWebServerFactory()
+	  {
+		  //Enable SSL Trafic
+		  TomcatServletWebServerFactory factory =new TomcatServletWebServerFactory();
+		  factory.addAdditionalTomcatConnectors(connector());
+		  return factory;
+	  }
+	  */
+	
+	  @Bean
+	   ServletWebServerFactory servletContainer()
+	  {
+		  //Enable SSL Trafic
+		  TomcatServletWebServerFactory tomcat =new TomcatServletWebServerFactory()
+				  {
+			  		@Override
+			  		protected void postProcessContext(Context context)
+			  		{
+			  			SecurityConstraint securityConstraint=new SecurityConstraint();
+			  			securityConstraint.setUserConstraint("CONFIDENTIAL");
+			  			
+			  			SecurityCollection collection=new SecurityCollection();
+			  			collection.addPattern("/*");
+			  			securityConstraint.addCollection(collection);
+			  			context.addConstraint(securityConstraint);
+			  		}
+			  		
+				  };
+				  tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
+				  
+				  return tomcat;
+	  }
+	  
+	  /*Redirect all https petition from http 8080 to https8443*/
+	  
+	   Connector httpToHttpsRedirectConnector()
+	  {
+		  Connector connector=new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+		  connector.setScheme("https");
+		  //connector.setPort(8080);
+		  connector.setPort(8444);// abans Andorra 8443
+		  //connector.setSecure(false);
+		  connector.setSecure(true);
+		  connector.setRedirectPort(8444);
+		  return connector;
+	  }
+	  
+	//de aki para arriva comentar para ejecutar app con eclipse y no con tomcat
+	  
+	  
+	 
+}

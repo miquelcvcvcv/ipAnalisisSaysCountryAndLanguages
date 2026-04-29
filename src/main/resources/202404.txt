@@ -1,0 +1,3 @@
+202404._domainkey	IN	TXT	( "v=DKIM1; h=rsa-sha256; k=rsa; s=email; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw7p/3s2O6Z6oth7tilfb4xSCKs9TIeli6ahKDlbjROovAIR/BI8GNOdVQeivhIp04ZnLwrPoZBv2waM7x0S7ZZOjc8SLtjyelKAlc2pUwJcb3L7Rc4GieC/A47P6qYDpY3zqkeMGg1q6WMwOdgiQMaruC1T0MOPZ82nJflAPuz4+dh2r+CofFixS7bOIE8mdzx8xUFQOz8iNo/"
+	  "4KdhdL/M4ed2vnFXd3H5a7XmrmS3vufYHmT4ceEaYNlieY7ouUlY2dj4fZCubwry6LpFux+vRGPMYTsE1fbglkafALQ/m+BlqMXmcMpkdIejxnE/8VQhlLxZjfZWyMyV7geP8VBwIDAQAB" )  ; ----- DKIM key 202404 for mailattacher.com
