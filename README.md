@@ -1,1 +1,7 @@
-# mailattacher
+# ipAnalisisSaysCountryAndLanguages
+This has GPL3 license, like linux, use it freely, modify or improve if you want. This is a gift to humanity.
+This is has endpoints (also known as API) that analises web page vistor's IP, and provides information like vistor's Country and which language/s are spoken in that Country.
+It has been programed with all world countries, and it has more than 120 languages. I think that all languages with more than 2 millions of spoken people are included.
+Using this software you can also change dinamically the web language dinamically, according to visitor's language.
+I programmed this, cause there is no free product that does this, you had to pay to others If you want this functionallity, so I just did it.
+This has been programmed using Java (Spring Boot) that generates a .war and using Tomcat server you runnit. You also need to runnit over a Linux machine, cause it use a Linux terminal commad. Database is a MariaDB, but you don't need DDBB if you just want to know visitor country and languages that are spoken in that country, Database is just necessary if you want to store text that's is going to be shown in your web page in several languages, in order to change it dinamically. MailAttacher.com, sendingbig.com, sendingbigfiles.com and whichismyipdirecction.com are web pages that use this API. You can visit them if you want to see a final product or in order to understand better this API.
